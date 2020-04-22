@@ -32,7 +32,7 @@ namespace AviFavsPlus
         public static AviPButton FavoriteButton;
         public override void OnApplicationStart()
         {
-            Config.LoadConfig();
+            Config.LoadConfig(); //Needs to load the configs.
         }
 
         public override void OnFixedUpdate()
