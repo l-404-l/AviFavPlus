@@ -4,7 +4,7 @@ Uses API calls. (Doesn't get you banned unless youre loading like 1000 avatars e
 
 
 # Requirements
-- MelonLoader
+- [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader)
 
 
 # Todo
