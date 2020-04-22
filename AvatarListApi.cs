@@ -14,31 +14,25 @@ namespace AviFav_
         //Main List Mehtod
         public static void Refresh(this UiAvatarList value, IEnumerable<string> list)
         {
-            value.field_Private_Dictionary_2_String_ApiAvatar_0 = new Il2CppSystem.Collections.Generic.Dictionary<string, ApiAvatar>();
-            if (list.Count() > 0 && list != null)
+
+            value.field_Private_Dictionary_2_String_ApiAvatar_0.Clear();
+            foreach(var t in list)
             {
-                value.specificListIds = list.ToArray();
-            } else
-            {
-                value.specificListIds = new string[0];
-                value.Method_Public_Void_3();
+                value.field_Private_Dictionary_2_String_ApiAvatar_0.Add(t, null);
             }
+            value.specificListIds = list.ToArray();
             value.Method_Protected_Void_Int32_0(0);
         }
 
         //For other lists if needed.
         public static void Refresh(this UiAvatarList value, List<string> list)
         {
-            value.field_Private_Dictionary_2_String_ApiAvatar_0 = new Il2CppSystem.Collections.Generic.Dictionary<string, ApiAvatar>();
-            if (list.Count() > 0)
+            value.field_Private_Dictionary_2_String_ApiAvatar_0.Clear();
+            foreach (var t in list)
             {
-                value.specificListIds = list.ToArray();
+                value.field_Private_Dictionary_2_String_ApiAvatar_0.Add(t, null);
             }
-            else
-            {
-                value.specificListIds = new string[0];
-                value.Method_Public_Void_3();
-            }
+            value.specificListIds = list.ToArray();
             value.Method_Protected_Void_Int32_0(0);
         }
     }
@@ -67,7 +61,6 @@ namespace AviFav_
                     UpdateValue.category = UiAvatarList.Nested0.SpecificList;
                     UpdateValue.StopAllCoroutines();
                     updatethis.SetActive(false);
-                    UpdateValue.hideWhenEmpty = true;
                     aviList = UpdateValue;
                 }
                 return aviList;

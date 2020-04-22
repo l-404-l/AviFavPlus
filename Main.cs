@@ -68,7 +68,7 @@ namespace AviFavsPlus
             if (Config.CFG.Custom)
             {
                 CustomList = AvatarListApi.Create(Config.CFG.CustomName, 1);
-                CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID));
+                CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
 
 
                 //New Age - Delegates lol // thanks for the help khan understanding this.
@@ -104,14 +104,14 @@ namespace AviFavsPlus
                             ThumbnailImageUrl = avatar.thumbnailImageUrl,
                         });
                         Config.UpdateAvatars();
-                        CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID));
+                        CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
                         FavoriteButton.Title.text = Config.CFG.RemoveFavoriteTXT;
                     }
                     else
                     {
                         Config.DAvatars.RemoveAll(x => x.AvatarID == avatar.id);
                         Config.UpdateAvatars();
-                        CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID));
+                        CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
                         FavoriteButton.Title.text = Config.CFG.AddFavoriteTXT;
                     }
                 });

@@ -13,8 +13,8 @@ namespace AviFav_.Config
         public static Config CFG;
 
         public string CustomName = "Extended Favorites";
-        public string AddFavoriteTXT = "Add Favorites";
-        public string RemoveFavoriteTXT = "Remove Favorites";
+        public string AddFavoriteTXT = "+Favorite";
+        public string RemoveFavoriteTXT = "-Favorite";
         public bool Public = true;
         public bool Custom = true;
 
