@@ -5,3 +5,7 @@ Uses API calls. (Doesn't get you banned unless youre loading like 1000 avatars e
 
 # Requirements
 - MelonLoader
+
+
+# Todo
+- If list empty clear. (bugged rn)
