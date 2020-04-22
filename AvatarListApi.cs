@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AviFav_.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.Core;
+using static AviFav_.Config.Config;
 
 namespace AviFav_
 {
@@ -16,12 +18,72 @@ namespace AviFav_
         {
 
             value.field_Private_Dictionary_2_String_ApiAvatar_0.Clear();
-            foreach(var t in list)
+            foreach (var t in list)
             {
-                value.field_Private_Dictionary_2_String_ApiAvatar_0.Add(t, null);
+                if (!value.field_Private_Dictionary_2_String_ApiAvatar_0.ContainsKey(t))
+                    value.field_Private_Dictionary_2_String_ApiAvatar_0.Add(t, null);
             }
             value.specificListIds = list.ToArray();
             value.Method_Protected_Void_Int32_0(0);
+        }
+
+        public static void FirstLoad(this UiAvatarList value, List<SavedAvi> list)
+        {
+            int deleted = 0;
+            value.field_Private_Dictionary_2_String_ApiAvatar_0.Clear();
+            for (int i = 0; i < list.Count(); i++)
+            {
+                var t = list[i];
+                var avatar = new ApiAvatar() { id = t.AvatarID, name = t.Name, thumbnailImageUrl = t.ThumbnailImageUrl };
+                avatar.Get(new Action<ApiContainer>(x =>
+                {
+                    var avi = x.Model as ApiAvatar;
+                    if (avatar.releaseStatus == "private")
+                    {
+                        deleted++;
+                        list.Remove(t);
+                        return;
+                    }
+                    else
+                    {
+                        if (!value.field_Private_Dictionary_2_String_ApiAvatar_0.ContainsKey(t.AvatarID))
+                            value.field_Private_Dictionary_2_String_ApiAvatar_0.Add(t.AvatarID, avatar);
+                    }
+                }));
+            }
+            if (deleted > 0)
+            {
+                MelonLoader.MelonModLogger.Log($"Deleted {deleted} private avatars.");
+                DAvatars = list;
+                UpdateAvatars();
+            }
+            value.specificListIds = list.Select(x => x.AvatarID).ToArray();
+            value.Method_Protected_Void_Int32_0(0);
+
+        }
+
+        public static bool AvatarListPassthru(ApiAvatar avi)
+        {
+            if (avi.releaseStatus == "private" || avi == null)
+            {
+                return false;
+            }
+            if (!DAvatars.Any(v => v.AvatarID == avi.id))
+            {
+                DAvatars.Add(new SavedAvi()
+                {
+                    AvatarID = avi.id,
+                    Name = avi.name,
+                    ThumbnailImageUrl = avi.thumbnailImageUrl,
+                });
+            }
+            else
+            {
+                DAvatars.RemoveAll(v => v.AvatarID == avi.id);
+            }
+
+            UpdateAvatars();
+            return true;
         }
 
         //For other lists if needed.
@@ -76,6 +138,8 @@ namespace AviFav_
             list.ListBtn = list.AList.GetComponentInChildren<Button>();
             list.ListTitle = list.AList.GetComponentInChildren<Text>();
             list.ListTitle.text = listname;
+            list.AList.hideWhenEmpty = true;
+            list.AList.clearUnseenListOnCollapse = true;
             list.GameObj.SetActive(true);
             return list;
         }

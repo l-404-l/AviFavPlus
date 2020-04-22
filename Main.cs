@@ -67,8 +67,8 @@ namespace AviFavsPlus
         {
             if (Config.CFG.Custom)
             {
-                CustomList = AvatarListApi.Create(Config.CFG.CustomName, 1);
-                CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
+                CustomList = AvatarListApi.Create(Config.CFG.CustomName + " / " + Config.DAvatars.Count, 1);
+                CustomList.AList.FirstLoad(Config.DAvatars);
 
 
                 //New Age - Delegates lol // thanks for the help khan understanding this.
@@ -77,11 +77,12 @@ namespace AviFavsPlus
                     if (Config.DAvatars.Any(v => v.AvatarID == CustomList.AList.avatarPedestal.field_Internal_ApiAvatar_0.id))
                     {
                         FavoriteButton.Title.text = Config.CFG.RemoveFavoriteTXT;
-
+                        CustomList.ListTitle.text = Config.CFG.CustomName + " / " + Config.DAvatars.Count;
                     }
                     else
                     {
                         FavoriteButton.Title.text = Config.CFG.AddFavoriteTXT;
+                        CustomList.ListTitle.text = Config.CFG.CustomName + " / " + Config.DAvatars.Count;
                     }
 
                 });
@@ -95,24 +96,23 @@ namespace AviFavsPlus
                 FavoriteButton.SetAction(() =>
                 {
                     var avatar = CustomList.AList.avatarPedestal.field_Internal_ApiAvatar_0;
-                    if (!Config.DAvatars.Any(v => v.AvatarID == CustomList.AList.avatarPedestal.field_Internal_ApiAvatar_0.id))
+                    if (avatar.releaseStatus != "private")
                     {
-                        Config.DAvatars.Add(new SavedAvi()
+                        if (!Config.DAvatars.Any(v => v.AvatarID == avatar.id))
                         {
-                            AvatarID = avatar.id,
-                            Name = avatar.name,
-                            ThumbnailImageUrl = avatar.thumbnailImageUrl,
-                        });
-                        Config.UpdateAvatars();
-                        CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
-                        FavoriteButton.Title.text = Config.CFG.RemoveFavoriteTXT;
-                    }
-                    else
-                    {
-                        Config.DAvatars.RemoveAll(x => x.AvatarID == avatar.id);
-                        Config.UpdateAvatars();
-                        CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
-                        FavoriteButton.Title.text = Config.CFG.AddFavoriteTXT;
+                            AvatarListHelper.AvatarListPassthru(avatar);
+                            CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
+                            FavoriteButton.Title.text = Config.CFG.RemoveFavoriteTXT;
+                            CustomList.ListTitle.text = Config.CFG.CustomName + " / " + Config.DAvatars.Count;
+                        }
+                        else
+                        {
+
+                            AvatarListHelper.AvatarListPassthru(avatar);
+                            CustomList.AList.Refresh(Config.DAvatars.Select(x => x.AvatarID).Reverse());
+                            FavoriteButton.Title.text = Config.CFG.AddFavoriteTXT;
+                            CustomList.ListTitle.text = Config.CFG.CustomName + " / " + Config.DAvatars.Count;
+                        }
                     }
                 });
 
