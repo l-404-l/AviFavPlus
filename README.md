@@ -4,7 +4,10 @@ Adds another favorite menu. Favorites save to your PC so any account you use the
 
 # Requirements
 - [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader)
+- Public Releases [Discord](https://discord.gg/PMmbwc2) Files
 
+# Install
+- Join my public releases [discord](https://discord.gg/PMmbwc2) for required files
 
 # Known Problems
 - Lists over 200-300 create lag (because vrchat creates to many objects on open / scroll)
