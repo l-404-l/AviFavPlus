@@ -24,7 +24,7 @@ namespace AviFav_
                     value.field_Private_Dictionary_2_String_ApiAvatar_0.Add(t, null);
             }
             value.specificListIds = list.ToArray();
-            value.Method_Protected_Void_Int32_0(0);
+            value.Method_Protected_Virtual_Void_Int32_1(0);
         }
 
         public static void FirstLoad(this UiAvatarList value, List<SavedAvi> list)
@@ -58,7 +58,8 @@ namespace AviFav_
                 UpdateAvatars();
             }
             value.specificListIds = list.Select(x => x.AvatarID).ToArray();
-            value.Method_Protected_Void_Int32_0(0);
+            //value.Method_Protected_Virtual_Void_Int32_0(0);
+            value.Method_Protected_Virtual_Void_Int32_1(0);
 
         }
 
@@ -95,7 +96,7 @@ namespace AviFav_
                 value.field_Private_Dictionary_2_String_ApiAvatar_0.Add(t, null);
             }
             value.specificListIds = list.ToArray();
-            value.Method_Protected_Void_Int32_0(0);
+            value.Method_Protected_Virtual_Void_Int32_1(0);
         }
     }
     public class AvatarListApi
@@ -120,7 +121,7 @@ namespace AviFav_
                     var avText = updatethis.transform.Find("Button");                                   // I make a invis list because 1 doesn't activate or have anything 
                     avText.GetComponentInChildren<Text>().text = "New List";                            // running and its just easier to copy / less todo on copy.
                     var UpdateValue = updatethis.GetComponent<UiAvatarList>();
-                    UpdateValue.category = UiAvatarList.Nested0.SpecificList;
+                    UpdateValue.category = UiAvatarList.EnumNPublicSealedvaInPuMiFaSpClPuLi9vUnique.SpecificList;
                     UpdateValue.StopAllCoroutines();
                     updatethis.SetActive(false);
                     aviList = UpdateValue;
@@ -190,7 +191,7 @@ namespace AviFav_
             list.Title.text = ButtonTitle;
             if (!shownew)
             {
-                var t = list.GameObj.GetComponentsInChildren(Image.Il2CppType);
+                var t = list.GameObj.GetComponentsInChildren(UnhollowerRuntimeLib.Il2CppTypeOf<UnityEngine.UI.Image>.Type);
                 foreach (var pics in t)
                 {
                     if (pics.name == "Icon_New")

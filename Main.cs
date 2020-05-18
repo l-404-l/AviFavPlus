@@ -22,7 +22,7 @@ namespace AviFavsPlus
         public const string Name = "Avatar Favorites Plus"; // Name of the Mod.  (MUST BE SET)
         public const string Author = "404#0004"; // Author of the Mod.  (Set as null if none)
         public const string Company = "I am not a company -Kappa-"; // Company that made the Mod.  (Set as null if none)
-        public const string Version = "1.2.0"; // Version of the Mod.  (MUST BE SET)
+        public const string Version = "1.3.0"; // Version of the Mod.  (MUST BE SET)
         public const string DownloadLink = "https://github.com/l-404-l"; // Download Link for the Mod.  (Set as null if none)
     }
 
@@ -86,6 +86,7 @@ namespace AviFavsPlus
                     }
 
                 });
+
 
                 //Insane how long this line is LOL;
                 CustomList.AList.avatarPedestal.field_Internal_Action_3_String_GameObject_AvatarPerformanceStats_0 = Il2CppSystem.Delegate.Combine(CustomList.AList.avatarPedestal.field_Internal_Action_3_String_GameObject_AvatarPerformanceStats_0, test).Cast<Il2CppSystem.Action<string, GameObject, VRCSDK2.Validation.Performance.Stats.AvatarPerformanceStats>>();
