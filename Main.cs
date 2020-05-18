@@ -28,6 +28,7 @@ namespace AviFavsPlus
 
     public class AviFavPlus : MelonMod
     {
+        
         public static AvatarListApi CustomList;
         public static AviPButton FavoriteButton;
         public override void OnApplicationStart()
@@ -71,8 +72,7 @@ namespace AviFavsPlus
                 CustomList.AList.FirstLoad(Config.DAvatars);
 
 
-                //New Age - Delegates lol // thanks for the help khan understanding this.
-                Il2CppSystem.Delegate test = (Il2CppSystem.Action<string, GameObject, VRCSDK2.Validation.Performance.Stats.AvatarPerformanceStats>)new Action<string, GameObject, VRCSDK2.Validation.Performance.Stats.AvatarPerformanceStats>((x, y, z) =>
+                CustomList.AList.avatarPedestal.field_Internal_Action_3_String_GameObject_AvatarPerformanceStats_0 = new Action<string, GameObject, VRCSDK2.Validation.Performance.Stats.AvatarPerformanceStats>((x, y, z) =>
                 {
                     if (Config.DAvatars.Any(v => v.AvatarID == CustomList.AList.avatarPedestal.field_Internal_ApiAvatar_0.id))
                     {
@@ -86,12 +86,7 @@ namespace AviFavsPlus
                     }
 
                 });
-
-
-                //Insane how long this line is LOL;
-                CustomList.AList.avatarPedestal.field_Internal_Action_3_String_GameObject_AvatarPerformanceStats_0 = Il2CppSystem.Delegate.Combine(CustomList.AList.avatarPedestal.field_Internal_Action_3_String_GameObject_AvatarPerformanceStats_0, test).Cast<Il2CppSystem.Action<string, GameObject, VRCSDK2.Validation.Performance.Stats.AvatarPerformanceStats>>();
-
-
+                
                 //Add-Remove Favorite Button
                 FavoriteButton = AviPButton.Create(Config.CFG.AddFavoriteTXT, 0f, 9.6f);
                 FavoriteButton.SetAction(() =>
@@ -119,8 +114,7 @@ namespace AviFavsPlus
 
                 //Author Button
                 var t = AviPButton.Create("Show Author", 320f, 9.6f);
-                var scale = t.GameObj.transform.localScale;
-                t.GameObj.transform.localScale = new Vector3(scale.x - 0.1f, scale.y - 0.1f, scale.z - 0.1f);
+                t.SetScale(-.1f);
                 t.SetAction(() =>
                 {
                     VRCUiManager.prop_VRCUiManager_0.Method_Public_Void_Boolean_0(true);

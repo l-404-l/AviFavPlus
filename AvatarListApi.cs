@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnhollowerRuntimeLib;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.Core;
@@ -117,7 +118,7 @@ namespace AviFav_
                     var pageAvatar = GameObject.Find("/UserInterface/MenuContent/Screens/Avatar");
                     var vlist = pageAvatar.transform.Find("Vertical Scroll View/Viewport/Content");
                     var updatethis = vlist.transform.Find("Favorite Avatar List").gameObject;
-                    updatethis = GameObject.Instantiate(updatethis, updatethis.transform.parent);
+                    updatethis = UnityEngine.Object.Instantiate(updatethis, updatethis.transform.parent);
                     var avText = updatethis.transform.Find("Button");                                   // I make a invis list because 1 doesn't activate or have anything 
                     avText.GetComponentInChildren<Text>().text = "New List";                            // running and its just easier to copy / less todo on copy.
                     var UpdateValue = updatethis.GetComponent<UiAvatarList>();
@@ -133,7 +134,7 @@ namespace AviFav_
         public static AvatarListApi Create(string listname, int index)
         {
             var list = new AvatarListApi();
-            list.GameObj = GameObject.Instantiate(AviList.gameObject, AviList.transform.parent);
+            list.GameObj = UnityEngine.Object.Instantiate(AviList.gameObject, AviList.transform.parent);
             list.GameObj.transform.SetSiblingIndex(index);
             list.AList = list.GameObj.GetComponent<UiAvatarList>();
             list.ListBtn = list.AList.GetComponentInChildren<Button>();
@@ -168,7 +169,7 @@ namespace AviFav_
                 if (avipbtn == null)
                 {
                     var button = GameObject.Find("/UserInterface/MenuContent/Screens/Avatar/Favorite Button");
-                    var NewFavPageBTN = GameObject.Instantiate(button, button.transform.parent);
+                    var NewFavPageBTN = UnityEngine.Object.Instantiate(button, button.transform.parent);
                     NewFavPageBTN.GetComponent<Button>().onClick.RemoveAllListeners();
                     NewFavPageBTN.SetActive(false);
                     var pos = NewFavPageBTN.transform.localPosition;
@@ -181,26 +182,32 @@ namespace AviFav_
 
         public static AviPButton Create(string ButtonTitle, float x, float y, bool shownew = false)
         {
-            var list = new AviPButton();
-            list.GameObj = GameObject.Instantiate(AviPBTN.gameObject, AviPBTN.transform.parent);
-            list.Btn = list.GameObj.GetComponentInChildren<Button>();
-            list.Btn.onClick.RemoveAllListeners();
-            var pos = list.GameObj.transform.localPosition;
-            list.GameObj.transform.localPosition = new Vector3(pos.x + x, pos.y + (80f * y));
-            list.Title = list.GameObj.GetComponentInChildren<Text>();
-            list.Title.text = ButtonTitle;
+            var NBtn = new AviPButton();
+            NBtn.GameObj = UnityEngine.Object.Instantiate(AviPBTN.gameObject, AviPBTN.transform.parent);
+            NBtn.Btn = NBtn.GameObj.GetComponentInChildren<Button>();
+            NBtn.Btn.onClick.RemoveAllListeners();
+            var pos = NBtn.GameObj.transform.localPosition;
+            NBtn.GameObj.transform.localPosition = new Vector3(pos.x + x, pos.y + (80f * y));
+            NBtn.Title = NBtn.GameObj.GetComponentInChildren<Text>();
+            NBtn.Title.text = ButtonTitle;
             if (!shownew)
             {
-                var t = list.GameObj.GetComponentsInChildren(UnhollowerRuntimeLib.Il2CppTypeOf<UnityEngine.UI.Image>.Type);
+                var t = NBtn.GameObj.GetComponentsInChildren(Il2CppType.Of<Image>());
                 foreach (var pics in t)
                 {
                     if (pics.name == "Icon_New")
-                        GameObject.DestroyImmediate(pics);
+                        UnityEngine.Object.DestroyImmediate(pics);
 
                 }
             }
-            list.GameObj.SetActive(true);
-            return list;
+            NBtn.GameObj.SetActive(true);
+            return NBtn;
+        }
+
+        public void SetScale(float size)
+        {
+            var scale = GameObj.transform.localScale;
+            GameObj.transform.localScale = new Vector3(scale.x + size, scale.y + size, scale.z + size);
         }
 
         public void SetAction(Action v)
