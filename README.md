@@ -21,3 +21,4 @@ https://github.com/l-404-l/AviFavPlus/wiki/Config-Explaination
 
 # Please do not use my code for your own projects.
 Only use my dlls and hook into them. Thank you.
+All rights reserved.
