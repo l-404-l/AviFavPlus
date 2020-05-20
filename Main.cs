@@ -1,19 +1,10 @@
 ﻿using AviFav_;
 using AviFav_.Config;
-using Harmony;
 using MelonLoader;
-using NET_SDK.Harmony;
-using NET_SDK.Reflection;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 using VRC.Core;
-using VRC.UI;
 
 namespace AviFavsPlus
 {

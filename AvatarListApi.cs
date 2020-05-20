@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnhollowerRuntimeLib;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.Core;
@@ -192,7 +191,7 @@ namespace AviFav_
             NBtn.Title.text = ButtonTitle;
             if (!shownew)
             {
-                var t = NBtn.GameObj.GetComponentsInChildren(Il2CppType.Of<Image>());
+                var t = NBtn.GameObj.GetComponentsInChildren(Image.Il2CppType); // I gotta remember to change this back when 4 drops.
                 foreach (var pics in t)
                 {
                     if (pics.name == "Icon_New")
