@@ -8,7 +8,7 @@ Adds another favorite menu. Favorites save to your PC so any account you use the
 - Use [MLEZUpdater](https://github.com/l-404-l/MLEZUpdater) for perfect Installation.
 
 # Install
-- Join my public releases [discord](https://discord.gg/PMmbwc2) for required files
+- Join my public releases [discord](https://discord.gg/PMmbwc2) for support
 
 # Known Problems
 - Lists over 200-300 create lag (because vrchat creates to many objects on open / scroll)
