@@ -37,6 +37,7 @@ namespace AviFavsPlus
                         AviFav_.Config.Config.DAvatars.Add(new AviFav_.Config.Config.SavedAvi() { Name = avi, AvatarID = avi, ThumbnailImageUrl = "" });
                     }
                 }
+                AviFav_.Config.Config.UpdateAvatars();
             }
         }
 
