@@ -25,6 +25,19 @@ namespace AviFavsPlus
         public override void OnApplicationStart()
         {
             Config.LoadConfig(); //Needs to load the configs.
+            var txt_path = new FileInfo(Path.Combine(Assembly.GetExecutingAssembly().Location, "avatars.txt"));
+            if (txt_path.Exists)
+            {
+                var txt_avis = File.ReadAllLines().ToList().Where(l => !string.IsNullOrWhiteSpace(l)).Select(l => l.Trim()).ToList();
+                foreach (var avi in txt_avis)
+                {
+                    var hasAvi = AviFav_.Config.Config.DAvatars.Select(a => a.AvatarID == avi).FirstOrDefault();
+                    if (!hasAvi)
+                    {
+                        AviFav_.Config.Config.DAvatars.Add(new AviFav_.Config.Config.SavedAvi() { Name = avi, AvatarID = avi, ThumbnailImageUrl = "" });
+                    }
+                }
+            }
         }
 
         public override void OnFixedUpdate()
