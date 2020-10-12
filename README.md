@@ -4,6 +4,7 @@ Adds another favorite menu. Favorites save to your PC so any account you use the
 
 # Requirements
 - Use [MLEZUpdater](https://github.com/l-404-l/MLEZUpdater) for perfect Installation.
+- [0Harmony](https://github.com/pardeike/Harmony)
 
 # Install
 - Join my public releases [discord](https://discord.gg/PMmbwc2) for support
