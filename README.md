@@ -8,10 +8,6 @@ Adds another favorite menu. Favorites save to your PC so any account you use the
 # Install
 - Join my public releases [discord](https://discord.gg/PMmbwc2) for support
 
-# Known Problems
-- Lists over 200-300 create lag (because vrchat creates to many objects on open / scroll)
-- When list count less than 0 will keep the last one there. (unless you restart)
-
 # Custom List Import
 https://github.com/l-404-l/AviFavPlus/wiki/Avatars-Explanation
 
