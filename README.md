@@ -3,6 +3,7 @@ Adds another favorite menu. Favorites save to your PC so any account you use the
 
 
 # Requirements
+[Must Use FreeLoading.](https://github.com/l-404-l/FreeLoading/releases);
 
 # Install
 - Join my public releases [discord](https://discord.gg/PMmbwc2) for support
