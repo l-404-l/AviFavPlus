@@ -7,6 +7,7 @@ Adds another favorite menu. Favorites save to your PC so any account you use the
 
 # Install
 - Join my public releases [discord](https://discord.gg/ZTzzJNTcNH) for support
+- Make sure LiteDB.dll is in your managed folder. (found in discord or on github)
 
 # Custom List Import
 https://github.com/l-404-l/AviFavPlus/wiki/Avatars-Explanation
