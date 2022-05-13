@@ -2,9 +2,6 @@
 Adds another favorite menu. Favorites save to your PC so any account you use they will transfer.
 
 
-# Requirements
-[Must Use FreeLoading.](https://github.com/l-404-l/FreeLoading/releases);
-
 # Install
 - Join my public releases [discord](https://discord.gg/ZTzzJNTcNH) for support
 - Make sure LiteDB.dll is in your managed folder. (found in discord or on github)
